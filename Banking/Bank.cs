@@ -7,9 +7,9 @@ namespace Banking
     public class Bank
     {
         // all accounts in the bank <account number, bank account>
-        private Dictionary<String, BankAccount> accounts = new Dictionary<string, BankAccount>();
-        private AccountNrGenerator accountNrGenerator = new AccountNrGenerator();
-        private List<Transfer> failingTransfers = new List<Transfer>();
+        private Dictionary<String, BankAccount> accounts = new();
+        private AccountNrGenerator accountNrGenerator = new();
+        private List<Transfer> failingTransfers = new();
 
         public Bank()
         {
@@ -26,7 +26,7 @@ namespace Banking
             {
                 return null;
             }
-            BankAccount bankAccount = new BankAccount(accountNrGenerator.GetUniqieAccountNr(), pin);
+            BankAccount bankAccount = new(accountNrGenerator.GetUniqieAccountNr(), pin);
             accounts.Add(bankAccount.AccountNumber.ToString(), bankAccount);
 
             return bankAccount.AccountNumber.ToString();
@@ -41,7 +41,7 @@ namespace Banking
             {
                 balance = 0;
             }
-            BankAccount bankAccount = new BankAccount(accountNrGenerator.GetUniqieAccountNr(), pin, balance);
+            BankAccount bankAccount = new(accountNrGenerator.GetUniqieAccountNr(), pin, balance);
             accounts.Add(bankAccount.AccountNumber.ToString(), bankAccount);
 
             return bankAccount.AccountNumber.ToString();
@@ -69,7 +69,6 @@ namespace Banking
         /// <returns>True if successful.</returns>
         public bool Transfer(Transfer transfer, string pin)
         {
-            // check that amount > 0, else return false
             if (!accounts[transfer.FromAccountNr].ValidatePin(pin))
             {
                 return false;

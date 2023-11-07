@@ -42,3 +42,8 @@ save the test for later.
 #### 4102 Unit Test ParkingMachine - Klassen Bank
 Now all the tests run successfully, but I still cannot "Run All Tests In View". Running all the tests at once with "Run" works,
 so I don't know what is wrong here. 
+
+Some time later, with the help of my teacher, I can now run the project as intended. The dependencies of one of the projects 
+were of an incorrect .NET Core version. And now all the tests, including CardParkingMachineTest, run successfully. 
+I had some trouble with validating the entered pin in CardParkingMachine, but I almost figured it out. Not quite though, and
+with some help, I got it fixed and working.

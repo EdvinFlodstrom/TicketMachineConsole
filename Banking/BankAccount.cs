@@ -10,7 +10,7 @@ namespace Banking
         private string pin;
         private string accountNumber;
         private int balance;
-        private List<Transfer> successfullTransfers = new List<Transfer>();
+        private List<Transfer> successfullTransfers = new();
 
         public BankAccount(string accountNumber, string pin)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using Banking;
 
@@ -14,20 +15,47 @@ namespace Parking
 
         public CardParkingMachine(int costPerHour, Bank bank, String accountNr) : base(costPerHour)
         {
-            
+            this.bank = bank;
+            this.accountNr = accountNr;
         }
         public void SetAccountNrAndPin(String accountNr, String pin)
         {
-            throw new NotImplementedException();
+            this.customerAccountNr = accountNr;
+            this.customerPin = pin;
         }
         public bool IsSetAccountNrAndPin()
         {
-            throw new NotImplementedException();
+            if (customerAccountNr == null || customerPin == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         public new Ticket BuyTicket()
         {
-            throw new NotImplementedException();
-        }
+            try
+            {               
+                if (bank.Transfer(new Transfer(customerAccountNr, accountNr, base.CurrentTotal), customerPin))
+                {
+                    Ticket ticket = base.BuyTicket();
 
+                    customerAccountNr = null;
+                    customerPin = null;
+
+                    return ticket;
+                }
+                else
+                {
+                    return null;
+                }                
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

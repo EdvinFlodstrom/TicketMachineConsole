@@ -60,7 +60,7 @@ namespace Parking
         {
             if (amount > 0)
             {
-                CurrentTotal += amount;
+                currentTotal += amount;
             }
         }
 
@@ -68,7 +68,7 @@ namespace Parking
         {
             Ticket ticket = new Ticket(currentTotal, costPerHour);
 
-            total += CurrentTotal;
+            total += currentTotal;
             CurrentTotal = 0;
 
             return ticket;
