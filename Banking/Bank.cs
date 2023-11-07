@@ -47,15 +47,19 @@ namespace Banking
             return bankAccount.AccountNumber.ToString();
         }
         public int GetBalance(string accountNr, string pin)
-        {           
+        {
             try
             {
-                return accounts[accountNr].Balance;
+                if (!accounts[accountNr].ValidatePin(pin))
+                {
+                    return 0;
+                }
             }
             catch
             {
                 return 0;
             }
+            return accounts[accountNr].Balance;
         }
         /// <summary>
         /// Call to transfer will fail either pin is wrong or the amount is bigger than allowed.
@@ -91,7 +95,10 @@ namespace Banking
         {
             try
             {
-                accounts[accountNr].ValidatePin(pin);
+                if (!accounts[accountNr].ValidatePin(pin))
+                {
+                    return null;
+                }
             }
             catch
             {
@@ -102,6 +109,6 @@ namespace Banking
                 return accounts[accountNr].GetTransfers();
             }
             return null;
-        }        
+        }
     }
 }

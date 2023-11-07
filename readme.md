@@ -35,3 +35,10 @@ this test confuses me somewhat. Earlier in the code, this is written: `String ac
 This means that the account has a balance of 4000. The test essentially expects the balance of the account to be reset if
 the incorrect pin is entered during a transaction. I'm unsure of whether this is the intended result or not, so for now, I'll 
 save the test for later.
+
+2023-11-07 
+------------
+
+#### 4102 Unit Test ParkingMachine - Klassen Bank
+Now all the tests run successfully, but I still cannot "Run All Tests In View". Running all the tests at once with "Run" works,
+so I don't know what is wrong here. 
