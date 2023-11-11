@@ -47,3 +47,31 @@ Some time later, with the help of my teacher, I can now run the project as inten
 were of an incorrect .NET Core version. And now all the tests, including CardParkingMachineTest, run successfully. 
 I had some trouble with validating the entered pin in CardParkingMachine, but I almost figured it out. Not quite though, and
 with some help, I got it fixed and working.
+
+2023-11-10
+-------------
+#### 4102 Unit Test ParkingMachine - Klassen TicketChecker
+Starting out, my objective was to create two classes: TicketChecker and TicketCheckerTest. Since the latter is meant to test
+the former, I was also to set up that. I mostly managed to do it, without too much hassle. Though, when I thought I was done,
+the tests weren't running or showing up in the test explorer. As it turns out, the class TicketCheckerTest was internal, while
+it had to be public. I'd made this change (internal to public) for TicketChecker, but not TicketCheckerTest. But it works now, 
+so I can start writing the classes and tests.
+
+The classes and tests are now working. It didn't take me long or much trouble to set up two tests where in one case the
+ticket is valid, and in the other, the ticket is invalid. A simple `if (DateTime.Now > ticket.GetValidTo())` was enough
+in this case, I think. Now it's time to hand out some fines, to invalid tickets...
+
+2023-11-11
+---------------
+#### 4102 Unit Test ParkingMachine - Klassen TicketChecker
+I've set up four tests now, that all work as expected. The tests check that 1. The ticket is valid, 2. The ticket is invalid,
+3. If you have a valid ticket, you will be fined 0 kr, and 4. If your ticket is expired, you will be fined 100 kr/hour.
+It didn't take all that long to make, and it wasn't too diffucult. The most difficult parts were probably getting the
+difference in time between two DateTimes, and forging a false time to set up a fine. I did the latter to make sure that
+the fine is 100 kr/hour (this cost per hour is passed as an argument when calling the constructor for TicketChecker) works
+both for the amount of time that has passed, and that it doesn't fine you if your ticket is still valid. So, if you had a 
+ticket that was valid for 2 hours but stayed for 5 hours, you are then fined 300 kr in this test. It's not identical to 
+real life, but it doesn't have to be, I think.
+* https://stackoverflow.com/questions/2821040/how-do-i-get-the-time-difference-between-two-datetime-objects-using-c
+* https://learn.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=vs-2022
+* https://learn.microsoft.com/en-us/visualstudio/test/walkthrough-creating-and-running-unit-tests-for-managed-code?view=vs-2022
